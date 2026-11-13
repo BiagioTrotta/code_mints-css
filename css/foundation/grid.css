@@ -4,7 +4,11 @@
   column-gap: var(--mint-gutter-x);
   row-gap: var(--mint-gutter-x);
 }
-.row > * { min-width: 0; }
+.row > * { min-width: 0; grid-column: auto / span 12; }
+/* Give unconfigured columns equal, content-driven widths without Flexbox. */
+.row:has(> .col):not(:has(> [class*="col-"])) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
 .col { grid-column: auto; }
 .col-1 { grid-column: auto / span 1; }
 .col-2 { grid-column: auto / span 2; }
@@ -228,5 +232,3 @@
   .order-xxl-11 { order: 11; }
   .order-xxl-12 { order: 12; }
 }
-
-

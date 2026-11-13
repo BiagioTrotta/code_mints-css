@@ -1,0 +1,7 @@
+.table { width: 100%; color: var(--mint-text); vertical-align: top; }
+.table th, .table td { padding: .75rem; border-bottom: 1px solid var(--mint-border); text-align: start; }
+.table thead th { color: var(--mint-text-muted); font-size: .875rem; font-weight: var(--mint-weight-semibold); }
+.table-striped tbody tr:nth-child(odd) { background: color-mix(in srgb, var(--mint-surface), var(--mint-text) 3%); }
+.table-hover tbody tr:hover { background: color-mix(in srgb, var(--mint-primary), transparent 88%); }
+.table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-responsive > .table { min-width: 36rem; }

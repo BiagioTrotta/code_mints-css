@@ -1,0 +1,9 @@
+.alert { position: relative; padding: 1rem 1.125rem; border: 1px solid var(--mint-border); border-inline-start-width: 4px; border-radius: var(--mint-radius-sm); background: var(--mint-surface); color: var(--mint-text); }
+.alert-title { margin: 0 0 .25rem; font-size: 1rem; font-weight: var(--mint-weight-bold); }
+.alert-success { border-inline-start-color: var(--mint-success); }
+.alert-warning { border-inline-start-color: var(--mint-warning); }
+.alert-danger { border-inline-start-color: var(--mint-danger); }
+.alert-info { border-inline-start-color: var(--mint-info); }
+.alert-dismissible { padding-inline-end: 3rem; }
+.alert-close { position: absolute; inset-block-start: .5rem; inset-inline-end: .5rem; display: grid; width: 2rem; height: 2rem; place-items: center; border: 0; border-radius: var(--mint-radius-sm); background: transparent; color: inherit; font-size: 1.25rem; }
+.alert-close:hover { background: color-mix(in srgb, var(--mint-text), transparent 90%); }

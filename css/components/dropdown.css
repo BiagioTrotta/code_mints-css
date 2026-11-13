@@ -1,0 +1,8 @@
+.dropdown { position: relative; display: inline-block; }
+.dropdown-toggle { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; list-style: none; }
+.dropdown-toggle::-webkit-details-marker { display: none; }
+.dropdown-toggle::after { width: .45em; height: .45em; border-inline-end: 1.5px solid currentColor; border-block-end: 1.5px solid currentColor; content: ""; transform: rotate(45deg) translateY(-.15em); }
+.dropdown[open] > .dropdown-toggle::after { transform: rotate(225deg) translate(-.1em, -.05em); }
+.dropdown-menu { position: absolute; z-index: 10; inset-block-start: calc(100% + .375rem); inset-inline-start: 0; min-width: 12rem; margin: 0; padding: .375rem; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-sm); background: var(--mint-surface); box-shadow: var(--mint-shadow-md); list-style: none; }
+.dropdown-item { display: block; width: 100%; padding: .5rem .75rem; border: 0; border-radius: 4px; background: transparent; color: var(--mint-text); font: inherit; text-align: start; text-decoration: none; }
+.dropdown-item:hover, .dropdown-item:focus-visible { background: color-mix(in srgb, var(--mint-primary), transparent 82%); }

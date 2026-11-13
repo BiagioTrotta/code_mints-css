@@ -1,0 +1,5 @@
+.pagination { display: flex; flex-wrap: wrap; gap: .25rem; margin: 0; padding: 0; list-style: none; }
+.page-link { display: grid; min-width: 2.5rem; min-height: 2.5rem; padding-inline: .5rem; place-items: center; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-sm); background: var(--mint-surface); color: var(--mint-text); text-decoration: none; }
+.page-link:hover { background: color-mix(in srgb, var(--mint-primary), transparent 82%); }
+.page-item[aria-current="page"] .page-link, .page-link[aria-current="page"] { border-color: var(--mint-secondary); background: var(--mint-secondary); color: var(--mint-ivory); }
+.page-item.disabled .page-link, .page-link[aria-disabled="true"] { opacity: .55; pointer-events: none; }

@@ -1,0 +1,6 @@
+.tabs { min-width: 0; }
+.tabs-list { display: flex; flex-wrap: wrap; gap: .25rem; margin: 0; padding: .25rem; border-bottom: 1px solid var(--mint-border); list-style: none; }
+.tab { display: inline-flex; min-height: 2.5rem; align-items: center; padding: .5rem .875rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--mint-text-muted); font: inherit; cursor: pointer; }
+.tab[aria-selected="true"], .tab[aria-current="page"] { border-bottom-color: var(--mint-focus); color: var(--mint-text); font-weight: var(--mint-weight-semibold); }
+.tab-panel { padding: 1rem 0; }
+.tab-panel[hidden] { display: none !important; }

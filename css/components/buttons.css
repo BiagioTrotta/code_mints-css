@@ -1,0 +1,34 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 2.75rem;
+  padding: .625rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--mint-radius-sm);
+  background: var(--mint-primary);
+  color: var(--mint-navy);
+  font: inherit;
+  font-weight: var(--mint-weight-semibold);
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+.btn:hover { filter: brightness(.96); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .55; pointer-events: none; }
+.btn-secondary { background: var(--mint-secondary); color: var(--mint-ivory); }
+.btn-outline { border-color: currentColor; background: transparent; color: var(--mint-text); }
+.btn-ghost { background: transparent; color: var(--mint-text); }
+.btn-danger { background: var(--mint-danger); color: var(--mint-danger-contrast); }
+.btn-sm { min-height: 2.125rem; padding: .375rem .75rem; font-size: .875rem; }
+.btn-lg { min-height: 3.25rem; padding: .875rem 1.25rem; font-size: 1.125rem; }
+.btn-block { display: flex; width: 100%; }
+.btn-loading { cursor: progress; }
+.btn-loading::after { width: .9em; height: .9em; border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; content: ""; animation: mint-spin .7s linear infinite; }
+@keyframes mint-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-loading::after { animation-duration: 1.8s; } }
+
+

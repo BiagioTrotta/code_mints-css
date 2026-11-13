@@ -37,7 +37,7 @@ Il font usa Manrope e JetBrains Mono se installati, poi fallback locali. Non vie
 
 ### Grid a 12 colonne
 
-`.row` crea una griglia CSS Grid di dodici tracce con gutter 24px. `.col` divide automaticamente lo spazio tra elementi; `.col-1` … `.col-12` impostano l'ampiezza. Le versioni responsive sono `.col-sm`, `.col-sm-1` … `.col-sm-12` e analoghe per `md`, `lg`, `xl`, `xxl`. Le colonne senza larghezza esplicita occupano una traccia; le griglie annidate iniziano una nuova griglia.
+`.row` crea una griglia CSS Grid di dodici tracce con gutter 24px. `.col` divide automaticamente lo spazio tra elementi nelle righe composte da sole colonne auto (minimo 15rem, su mobile impilato); `.col-1` … `.col-12` impostano l'ampiezza. Le versioni responsive sono `.col-sm`, `.col-sm-1` … `.col-sm-12` e analoghe per `md`, `lg`, `xl`, `xxl`. Le colonne responsive senza larghezza di base occupano tutta la riga sotto il proprio breakpoint; le griglie annidate iniziano una nuova griglia.
 
 `.offset-0` … `.offset-11` e le varianti `.offset-{sm|md|lg|xl|xxl}-0` … `-11` impostano la traccia iniziale. `.order-first`, `.order-last`, `.order-0` … `.order-12` e le varianti responsive controllano l'ordine visivo.
 
@@ -76,6 +76,27 @@ Le utility sono globali e non hanno varianti responsive automatiche. Usa le colo
 </div>
 ```
 
+## UI Components (0.3.0)
+
+I componenti sono classi CSS senza dipendenze. Varianti semantiche usano token Light/Dark; controlli nativi mantengono il comportamento browser. Dropdown e accordion usano `<details>/<summary>` e funzionano senza JavaScript. Il modal è stilizzato come `<dialog>` e va aperto tramite il metodo nativo `showModal()` (l'integrazione helper è prevista nel JavaScript Engine). Tabs e toast sono presentazionali in questa milestone; la gestione delle interazioni arriva nella milestone 4.
+
+- **Buttons:** `.btn`, `.btn-secondary`, `.btn-outline`, `.btn-ghost`, `.btn-danger`, `.btn-sm`, `.btn-lg`, `.btn-block`, `.btn-loading`.
+- **Cards:** `.card`, `.card-body`, `.card-header`, `.card-footer`, `.card-title`, `.card-text`, `.card-hover`.
+- **Forms:** `.form-label`, `.form-control`, `.form-select`, `.form-text`, `.form-error`, `.form-check`, `.form-check-input`, `.form-check-label`, `.input-group`, `.is-invalid` (oppure `aria-invalid="true"`).
+- **Navbar:** `.navbar`, `.navbar-brand`, `.navbar-nav`, `.navbar-link` (con `aria-current="page"` per la pagina attiva), `.navbar-toggler`, `.navbar-spacer`.
+- **Badges:** `.badge`, `.badge-primary`, `.badge-success`, `.badge-warning`, `.badge-danger`, `.badge-info`.
+- **Alerts:** `.alert`, `.alert-title`, `.alert-success`, `.alert-warning`, `.alert-danger`, `.alert-info`, `.alert-dismissible`, `.alert-close`.
+- **Dropdown:** `<details class="dropdown">`, `<summary class="dropdown-toggle">` e `<ul class="dropdown-menu">` con `.dropdown-item`.
+- **Modal:** `<dialog class="modal">` con `.modal-header`, `.modal-title`, `.modal-body`, `.modal-footer`. `dialog::backdrop` offre lo sfondo attenuato.
+- **Tables:** `.table`, `.table-striped`, `.table-hover`, `.table-responsive` (aggiungi `caption`, `thead` e `th scope` per l'accessibilità).
+- **Pagination:** `.pagination`, `.page-item`, `.page-link`; marca la pagina corrente con `aria-current="page"` e i link non attivi con `aria-disabled="true"`.
+- **Progress:** `<progress class="progress" max="100" value="60">60%</progress>`, `.progress-sm`, `.progress-lg`, `.progress-label`.
+- **Accordion:** `<details class="accordion-item">` dentro `.accordion`, con `<summary class="accordion-trigger">` e pannello `.accordion-panel`.
+- **Tabs:** `.tabs`, `.tabs-list`, `.tab`, `.tab-panel`; usa ruoli ARIA `tablist`, `tab`, `tabpanel` e `aria-selected`. Le interazioni da tastiera arriveranno con il JavaScript Engine.
+- **Toast:** `.toast-container`, `.toast`, `.toast-content`, `.toast-title`, `.toast-message`, `.toast-close`, `.toast-success|warning|danger|info`; per gli annunci usa un contenitore `aria-live="polite"`.
+
+Esempi completi: [examples/components.html](examples/components.html). Questa milestone fornisce gli stili: i pulsanti di chiusura di alert e toast e i tab non modificano da soli il DOM. La chiusura toast/alert e la gestione tastiera dei tab arriveranno con il JavaScript Engine. Tutti i controlli devono mantenere un nome accessibile; il framework non aggiunge automaticamente label o ruoli ARIA.
+
 ## Accessibilità
 
 Il reset conserva le funzionalità native; immagini e media sono responsive e i controlli ereditano il font. `:focus-visible` applica un contorno evidente. Verifica sempre le label associate ai controlli nel markup applicativo. I colori semantici usati come testo e lo stato focus hanno contrasto AA sul tema Light; Mint diretto è riservato agli accenti.
@@ -86,10 +107,10 @@ Richiede Node.js 18 o superiore e non installa pacchetti. Esegui `npm test` per 
 
 ## Versionamento e roadmap
 
-Si usa Semantic Versioning. Nessuna pubblicazione npm è prevista senza autorizzazione.
+Si usa Semantic Versioning. Nessuna pubblicazione npm è stata eseguita.
 
 - [x] 0.1.0 Foundation, temi, griglia e spacing essenziale
 - [x] 0.2.0 Utilities
-- [ ] 0.3.0 UI Components
+- [x] 0.3.0 UI Components
 - [ ] 0.4.0 Advanced e JavaScript
 - [ ] 1.0.0 Release stabile, build e documentazione finale

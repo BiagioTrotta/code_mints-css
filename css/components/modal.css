@@ -1,0 +1,11 @@
+.modal { width: min(40rem, calc(100% - 2rem)); max-height: min(90vh, 48rem); padding: 0; overflow: auto; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-lg); background: var(--mint-surface); color: var(--mint-text); box-shadow: var(--mint-shadow-md); }
+.modal::backdrop { background: rgb(16 24 32 / 58%); }
+.modal[open] { animation: mint-modal-in .18s ease-out; }
+.modal-header, .modal-body, .modal-footer { padding: 1.25rem; }
+.modal-header { display: flex; align-items: start; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--mint-border); }
+.modal-title { margin: 0; font-size: 1.25rem; }
+.modal-body { color: var(--mint-text-muted); }
+.modal-footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; border-top: 1px solid var(--mint-border); }
+@keyframes mint-modal-in { from { opacity: 0; transform: scale(.98) translateY(.25rem); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .modal[open] { animation: none; } }
+

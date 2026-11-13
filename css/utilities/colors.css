@@ -18,3 +18,7 @@
 .bg-mint { color: var(--mint-navy) !important; background-color: var(--mint-green) !important; }
 .bg-ivory { color: var(--mint-navy) !important; background-color: var(--mint-ivory) !important; }
 .bg-coral { color: var(--mint-navy) !important; background-color: var(--mint-coral) !important; }
+.bg-success { color: var(--mint-success) !important; background-color: var(--mint-success-bg) !important; }
+.bg-warning { color: var(--mint-warning) !important; background-color: var(--mint-warning-bg) !important; }
+.bg-danger { color: var(--mint-danger) !important; background-color: var(--mint-danger-bg) !important; }
+.bg-info { color: var(--mint-info) !important; background-color: var(--mint-info-bg) !important; }

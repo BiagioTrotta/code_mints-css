@@ -1,0 +1,7 @@
+progress.progress { display: block; width: 100%; height: .75rem; overflow: hidden; border: 0; border-radius: 50rem; background: var(--mint-border); accent-color: var(--mint-focus); }
+progress.progress::-webkit-progress-bar { border-radius: 50rem; background: var(--mint-border); }
+progress.progress::-webkit-progress-value { border-radius: 50rem; background: var(--mint-primary); }
+progress.progress::-moz-progress-bar { border-radius: 50rem; background: var(--mint-primary); }
+.progress-sm { height: .375rem !important; }
+.progress-lg { height: 1rem !important; }
+.progress-label { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: .375rem; font-size: .875rem; }

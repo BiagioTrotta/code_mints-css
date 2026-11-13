@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>code_mints-css · Componenti</title>
+  <link rel="stylesheet" href="../css/mint.css">
+</head>
+<body>
+  <main class="container py-5">
+    <p class="small">code_mints-css · UI Components 0.3.0</p>
+    <h1 class="mt-2">Componenti essenziali</h1>
+    <p class="my-3">Gli stili usano token semantici e markup HTML nativo.</p>
+    <section class="row">
+      <div class="col-12 col-lg-6">
+        <article class="card card-hover"><div class="card-body">
+          <h2 class="card-title">Button e badge</h2>
+          <p class="card-text mb-3">Azioni e stato con contrasto adattato al tema.</p>
+          <button class="btn">Azione principale</button>
+          <button class="btn btn-secondary">Secondaria</button>
+          <span class="badge badge-success ms-2">Pronto</span>
+        </div></article>
+      </div>
+      <div class="col-12 col-lg-6">
+        <article class="card"><div class="card-body">
+          <h2 class="card-title">Form e alert</h2>
+          <label class="form-label" for="email">Email</label>
+          <input class="form-control" id="email" type="email" placeholder="nome@esempio.it">
+          <p class="form-text mb-3">Non condivideremo il tuo indirizzo.</p>
+          <div class="alert alert-info" role="status">Le modifiche sono salvate.</div>
+        </div></article>
+      </div>
+      <div class="col-12">
+        <section class="accordion" aria-label="Domande frequenti">
+          <details class="accordion-item"><summary class="accordion-trigger">Il CSS funziona senza JavaScript?</summary><div class="accordion-panel">Sì. Il layout e i componenti nativi restano utilizzabili.</div></details>
+          <details class="accordion-item"><summary class="accordion-trigger">Come si apre un menu dropdown?</summary><div class="accordion-panel">Questo esempio usa <code>details</code> e <code>summary</code>: il controllo funziona nativamente.</div></details>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

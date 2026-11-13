@@ -1,0 +1,13 @@
+.accordion { border: 1px solid var(--mint-border); border-radius: var(--mint-radius-md); background: var(--mint-surface); }
+.accordion-item + .accordion-item { border-top: 1px solid var(--mint-border); }
+.accordion-item:first-child { border-start-start-radius: inherit; border-start-end-radius: inherit; }
+.accordion-item:last-child { border-end-start-radius: inherit; border-end-end-radius: inherit; }
+.accordion-header { margin: 0; font-size: 1rem; }
+.accordion-trigger { list-style: none; display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.125rem; border: 0; background: transparent; color: var(--mint-text); font: inherit; font-weight: var(--mint-weight-semibold); text-align: start; cursor: pointer; }
+.accordion-trigger::after { width: .5rem; height: .5rem; flex: 0 0 auto; border-inline-end: 2px solid currentColor; border-block-end: 2px solid currentColor; content: ""; transform: rotate(45deg) translateY(-.15rem); }
+.accordion-item[open] > .accordion-trigger::after { transform: rotate(225deg) translate(-.1rem, -.05rem); }
+.accordion-panel { padding: 0 1.125rem 1rem; color: var(--mint-text-muted); }
+.accordion-trigger:hover { background: color-mix(in srgb, var(--mint-primary), transparent 90%); }
+
+.accordion-trigger::-webkit-details-marker { display: none; }
+

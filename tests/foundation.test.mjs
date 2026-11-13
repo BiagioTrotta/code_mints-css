@@ -30,6 +30,8 @@ test('container widths and mobile-first breakpoint grid cover all sizes', async 
   }
   assert.match(container, /--mint-container-xxl/);
   assert.match(grid, /grid-template-columns:\s*repeat\(12, minmax\(0, 1fr\)\)/);
+  assert.match(grid, /grid-column: auto \/ span 12/);
+  assert.match(grid, /grid-template-columns: repeat\(auto-fit, minmax\(min\(100%, 15rem\), 1fr\)\)/);
   for (const cls of ['.col-12', '.col-sm-6', '.col-md-6', '.col-lg-4', '.col-xl-3', '.col-xxl-2', '.offset-md-3', '.order-md-1']) assert.ok(grid.includes(cls), `missing ${cls}`);
   assert.match(grid, /\.col \{ grid-column: auto; \}/);
 });
@@ -59,4 +61,50 @@ test('utilities provide core display, flex, color, sizing, border, text and visi
   }
   const entry = await css('../css/mint.css');
   for (const [file] of cases) assert.ok(entry.includes(`./utilities/${file}`), `mint.css does not load ${file}`);
+});
+
+test('UI component modules are loaded and expose documented core selectors', async () => {
+  const cases = [
+    ['buttons.css', ['.btn', '.btn-danger', '.btn-loading']],
+    ['cards.css', ['.card', '.card-body', '.card-hover']],
+    ['forms.css', ['.form-control', '.form-error', '.form-check']],
+    ['navbar.css', ['.navbar', '.navbar-link']],
+    ['badges.css', ['.badge', '.badge-success']],
+    ['alerts.css', ['.alert', '.alert-danger']],
+    ['dropdown.css', ['.dropdown[open]', '.dropdown-menu', '.dropdown-item']],
+    ['modal.css', ['.modal', '.modal::backdrop']],
+    ['tables.css', ['.table', '.table-responsive']],
+    ['pagination.css', ['.pagination', '.page-link']],
+    ['progress.css', ['progress.progress', '.progress-lg']],
+    ['accordion.css', ['.accordion', '.accordion-trigger', '.accordion-panel']],
+    ['tabs.css', ['.tabs-list', '.tab[aria-selected="true"]', '.tab-panel']],
+    ['toast.css', ['.toast-container', '.toast', '.toast-info']]
+  ];
+  const entry = await css('../css/mint.css');
+  for (const [file, selectors] of cases) {
+    const source = await css(`../css/components/${file}`);
+    assert.ok(entry.includes(`./components/${file}`), `mint.css does not load ${file}`);
+    for (const selector of selectors) assert.ok(source.includes(selector), `${file} missing ${selector}`);
+  }
+});
+
+test('semantic badge pairs meet 4.5:1 contrast in both themes', async () => {
+  const colors = await css('../css/foundation/colors.css');
+  const luminance = (hex) => {
+    const [r, g, b] = hex.match(/[\da-f]{2}/gi).map((v) => parseInt(v, 16) / 255).map((v) => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4);
+    return .2126 * r + .7152 * g + .0722 * b;
+  };
+  const contrast = (a, b) => { const x = luminance(a), y = luminance(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+  const palettes = [
+    ['#19704d', '#d8f3e3', '#8ee2b4', '#174832'],
+    ['#8a5200', '#fff0cc', '#ffd080', '#51390d'],
+    ['#b42318', '#fde4e1', '#ff9d91', '#4e201d'],
+    ['#155e75', '#d9f0f5', '#8bd8ed', '#163c49']
+  ];
+  for (const [lightText, lightBg, darkText, darkBg] of palettes) {
+    assert.ok(contrast(lightText, lightBg) >= 4.5);
+    assert.ok(contrast(darkText, darkBg) >= 4.5);
+    assert.ok(colors.toLowerCase().includes(lightBg.slice(1)));
+    assert.ok(colors.toLowerCase().includes(darkBg.slice(1)));
+  }
 });

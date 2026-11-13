@@ -1,0 +1,17 @@
+.card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--mint-border);
+  border-radius: var(--mint-radius-md);
+  background: var(--mint-surface);
+  color: var(--mint-text);
+}
+.card-body { padding: 1.25rem; }
+.card-header, .card-footer { padding: .875rem 1.25rem; background: color-mix(in srgb, var(--mint-surface), var(--mint-text) 4%); }
+.card-header { border-bottom: 1px solid var(--mint-border); }
+.card-footer { border-top: 1px solid var(--mint-border); }
+.card-title { margin: 0 0 .5rem; font-size: 1.25rem; }
+.card-text { color: var(--mint-text-muted); }
+.card-hover { transition: transform .18s ease, box-shadow .18s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: var(--mint-shadow-md); }
+@media (prefers-reduced-motion: reduce) { .card-hover { transition: none; } .card-hover:hover { transform: none; } }

@@ -1,0 +1,8 @@
+.navbar { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; min-height: 4rem; padding: .75rem 1rem; background: var(--mint-surface); color: var(--mint-text); }
+.navbar-brand { color: inherit; font-weight: var(--mint-weight-extrabold); text-decoration: none; }
+.navbar-nav { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem; margin: 0; padding: 0; list-style: none; }
+.navbar-link { display: inline-flex; align-items: center; min-height: 2.5rem; padding: .5rem .75rem; border-radius: var(--mint-radius-sm); color: var(--mint-text-muted); text-decoration: none; }
+.navbar-link:hover, .navbar-link[aria-current="page"] { background: color-mix(in srgb, var(--mint-primary), transparent 84%); color: var(--mint-text); }
+.navbar-toggler { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-sm); background: transparent; color: inherit; }
+.navbar-spacer { flex: 1 1 auto; }
+@media (max-width: 575.98px) { .navbar { align-items: flex-start; } .navbar-nav { width: 100%; } }
