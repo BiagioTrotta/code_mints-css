@@ -1,0 +1,5 @@
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 3px solid var(--mint-focus);
+  outline-offset: 3px;
+}
+::selection { color: var(--mint-navy); background: var(--mint-green); }

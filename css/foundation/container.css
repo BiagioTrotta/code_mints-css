@@ -1,0 +1,12 @@
+.container, .container-fluid {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: calc(var(--mint-gutter-x) / 2);
+}
+.container { max-width: 100%; }
+.container-fluid { max-width: none; }
+@media (min-width: 576px) { .container { max-width: var(--mint-container-sm); } }
+@media (min-width: 768px) { .container { max-width: var(--mint-container-md); } }
+@media (min-width: 992px) { .container { max-width: var(--mint-container-lg); } }
+@media (min-width: 1200px) { .container { max-width: var(--mint-container-xl); } }
+@media (min-width: 1400px) { .container { max-width: var(--mint-container-xxl); } }

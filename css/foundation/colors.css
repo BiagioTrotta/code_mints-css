@@ -1,0 +1,27 @@
+/* Brand colors stay constant; semantic tokens adapt to the selected theme. */
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --mint-bg: var(--mint-ivory);
+  --mint-surface: #fffefa;
+  --mint-text: var(--mint-navy);
+  --mint-text-muted: #53616b;
+  --mint-border: #d7ddd9;
+  --mint-focus: #08785d;
+  --mint-success: #19704d;
+  --mint-warning: #8a5200;
+  --mint-danger: #b42318;
+  --mint-info: #155e75;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --mint-bg: var(--mint-navy);
+  --mint-surface: var(--mint-slate);
+  --mint-text: var(--mint-ivory);
+  --mint-text-muted: #c1c9ce;
+  --mint-border: #40505b;
+  --mint-focus: var(--mint-green);
+  --mint-success: #8ee2b4;
+  --mint-warning: #ffd080;
+  --mint-danger: #ff9d91;
+  --mint-info: #8bd8ed;
+}

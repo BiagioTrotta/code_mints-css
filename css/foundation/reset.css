@@ -1,0 +1,14 @@
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+body { min-height: 100vh; }
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; }
+button, [type="button"], [type="reset"], [type="submit"] { cursor: pointer; }
+button:disabled, [aria-disabled="true"] { cursor: not-allowed; }
+textarea { resize: vertical; }
+table { border-collapse: collapse; border-spacing: 0; }
+[hidden] { display: none !important; }

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>code_mints-css · Foundation</title>
+  <link rel="stylesheet" href="../css/mint.css">
+  <style>
+    .demo-card { padding: 1rem; background: var(--mint-surface); border: 1px solid var(--mint-border); border-radius: var(--mint-radius-md); }
+  </style>
+</head>
+<body>
+  <main class="container py-5">
+    <p class="small">code_mints-css · Foundation 0.1.0</p>
+    <h1 class="mt-2">Less configuration. More creation.</h1>
+    <p class="my-3">Foundation responsiva, tema CSS e griglia a dodici colonne.</p>
+    <section class="row" aria-label="Esempio di griglia">
+      <article class="col-12 col-md-6 col-lg-4"><div class="demo-card">Colonna 1</div></article>
+      <article class="col-12 col-md-6 col-lg-4"><div class="demo-card">Colonna 2</div></article>
+      <article class="col-12 col-md-12 col-lg-4"><div class="demo-card">Colonna 3</div></article>
+    </section>
+    <p class="mt-4"><a href="#tema">Link con focus da tastiera</a></p>
+    <section id="tema" class="mt-4" data-theme="dark" style="padding:1rem; border-radius:var(--mint-radius-md)">
+      <h2 class="h4">Tema scuro</h2><p>Attivo con <code>data-theme="dark"</code> sul documento o su un contenitore.</p>
+    </section>
+  </main>
+</body>
+</html>
