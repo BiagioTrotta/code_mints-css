@@ -16,7 +16,7 @@ In sviluppo puoi collegare `css/mint.css`, che importa i moduli sorgente. Apri [
 
 ### Tema e token
 
-Light è il tema predefinito. Imposta `data-theme="dark"` sull'elemento `<html>` per il tema scuro, oppure `data-theme="light"` per esplicitarlo. Il tema può essere applicato anche a un sottoalbero. I token del brand restano invariati mentre i token semantici si adattano al tema.
+Dark è il tema predefinito. Imposta `data-theme="light"` sull'elemento `<html>` per il tema chiaro, oppure `data-theme="dark"` per esplicitare quello scuro. Il tema può essere applicato anche a un sottoalbero. I token del brand restano invariati mentre i token semantici si adattano al tema.
 
 Colori brand: `--mint-navy`, `--mint-slate`, `--mint-green`, `--mint-ivory`, `--mint-gray`, `--mint-coral`. Token semantici: `--mint-bg`, `--mint-surface`, `--mint-text`, `--mint-text-muted`, `--mint-border`, `--mint-focus`, `--mint-success`, `--mint-warning`, `--mint-danger`, `--mint-info`, `--mint-primary`, `--mint-secondary`. Sono disponibili anche token per font, pesi, radius, shadows, gutter, container e spacing.
 
@@ -126,7 +126,7 @@ Dropdown (`details`) e accordion (`details`) usano controlli nativi; non richied
 
 ## Accessibilità
 
-Il reset conserva le funzionalità native; immagini e media sono responsive e i controlli ereditano il font. `:focus-visible` applica un contorno evidente. Verifica sempre le label associate ai controlli nel markup applicativo. I colori semantici usati come testo e lo stato focus hanno contrasto AA sul tema Light; Mint diretto è riservato agli accenti.
+Il reset conserva le funzionalità native; immagini e media sono responsive e i controlli ereditano il font. `:focus-visible` applica un contorno evidente. Verifica sempre le label associate ai controlli nel markup applicativo. I colori semantici usati come testo e lo stato focus hanno contrasto AA sui temi Light e Dark; Mint diretto è riservato agli accenti.
 
 ## Sviluppo e verifica
 

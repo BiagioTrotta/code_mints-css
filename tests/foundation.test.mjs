@@ -10,6 +10,7 @@ test('brand and semantic design tokens are defined with separate light/dark them
   for (const token of ['--mint-navy', '--mint-slate', '--mint-green', '--mint-ivory', '--mint-gray', '--mint-coral']) assert.match(vars, new RegExp(token));
   assert.match(colors, /\[data-theme="light"\]/);
   assert.match(colors, /\[data-theme="dark"\]/);
+  assert.match(colors, /:root:not\(\[data-theme\]\)[^{]*\{\s*color-scheme:\s*dark/);
   assert.match(colors, /--mint-bg:\s*var\(--mint-navy\)/);
   assert.match(vars, /--mint-green:\s*#70e1c1/i);
 });
