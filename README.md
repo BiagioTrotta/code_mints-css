@@ -10,7 +10,7 @@ Per la distribuzione collega il foglio compatto. La build produce anche un CSS c
 <link rel="stylesheet" href="dist/mint.min.css">
 ```
 
-In sviluppo puoi collegare `css/mint.css`, che importa i moduli sorgente. Gli esempi dei componenti sono in `examples/`. Il package si chiama `code_mints-css` ed è alla versione `0.4.0`; non è pubblicato su npm.
+In sviluppo puoi collegare `css/mint.css`, che importa i moduli sorgente. Apri [test-css.html](https://github.com/BiagioTrotta/code_mints-css/blob/main/test-css.html) nella root per provare localmente il bundle e i componenti; gli esempi separati sono in `examples/`. Il package si chiama `code_mints-css` ed è alla versione `0.4.0`; non è pubblicato su npm.
 
 ## Foundation (0.1.0)
 
