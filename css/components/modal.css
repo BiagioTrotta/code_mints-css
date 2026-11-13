@@ -1,4 +1,4 @@
-.modal { width: min(40rem, calc(100% - 2rem)); max-height: min(90vh, 48rem); padding: 0; overflow: auto; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-lg); background: var(--mint-surface); color: var(--mint-text); box-shadow: var(--mint-shadow-md); }
+.modal { width: min(40rem, calc(100% - 2rem)); max-height: min(90vh, 48rem); max-height: min(90dvh, 48rem); padding: 0; overflow: auto; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-lg); background: var(--mint-surface); color: var(--mint-text); box-shadow: var(--mint-shadow-md); }
 .modal::backdrop { background: rgb(16 24 32 / 58%); }
 .modal[open] { animation: mint-modal-in .18s ease-out; }
 .modal-header, .modal-body, .modal-footer { padding: 1.25rem; }

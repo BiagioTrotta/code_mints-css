@@ -5,7 +5,7 @@
 
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
-body { min-height: 100vh; }
+body { min-height: 100vh; min-height: 100dvh; }
 img, picture, video, canvas, svg { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
 button, [type="button"], [type="reset"], [type="submit"] { cursor: pointer; }
@@ -549,9 +549,9 @@ p + p { margin-block-start: 1rem; }
 .mw-100 { max-width: 100% !important; }
 .mh-100 { max-height: 100% !important; }
 .min-vw-100 { min-width: 100vw !important; }
-.min-vh-100 { min-height: 100vh !important; }
+.min-vh-100 { min-height: 100vh !important; min-height: 100dvh !important; }
 .vw-100 { width: 100vw !important; }
-.vh-100 { height: 100vh !important; }
+.vh-100 { height: 100vh !important; height: 100dvh !important; }
 
 .border { border: 1px solid var(--mint-border) !important; }
 .border-0 { border: 0 !important; }
@@ -749,7 +749,7 @@ p + p { margin-block-start: 1rem; }
 .dropdown-item { display: block; width: 100%; padding: .5rem .75rem; border: 0; border-radius: 4px; background: transparent; color: var(--mint-text); font: inherit; text-align: start; text-decoration: none; }
 .dropdown-item:hover, .dropdown-item:focus-visible { background: color-mix(in srgb, var(--mint-primary), transparent 82%); }
 
-.modal { width: min(40rem, calc(100% - 2rem)); max-height: min(90vh, 48rem); padding: 0; overflow: auto; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-lg); background: var(--mint-surface); color: var(--mint-text); box-shadow: var(--mint-shadow-md); }
+.modal { width: min(40rem, calc(100% - 2rem)); max-height: min(90vh, 48rem); max-height: min(90dvh, 48rem); padding: 0; overflow: auto; border: 1px solid var(--mint-border); border-radius: var(--mint-radius-lg); background: var(--mint-surface); color: var(--mint-text); box-shadow: var(--mint-shadow-md); }
 .modal::backdrop { background: rgb(16 24 32 / 58%); }
 .modal[open] { animation: mint-modal-in .18s ease-out; }
 .modal-header, .modal-body, .modal-footer { padding: 1.25rem; }
