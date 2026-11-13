@@ -1,12 +1,14 @@
 {
   "name": "code_mints-css",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Framework CSS modulare, leggero e senza dipendenze runtime.",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "test": "node --test tests/*.test.mjs",
-    "check:structure": "node scripts/check-structure.mjs"
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "check:structure": "node scripts/check-structure.mjs",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs"
   },
   "files": [
     "css/",

@@ -1,9 +1,15 @@
+# Changelog
+
+## [0.4.0] - 2026-11-13
+
+- Aggiunti responsive utilities, animation system, focus helpers e supporto reduced motion.
+- Creato il JavaScript Engine Vanilla con init manuale per reveal, counter, modal, tabs e toast.
+- Aggiunti esempio interattivo, documentazione API e build riproducibile dei bundle CSS/JS.
+
 ## [0.3.0] - 2026-11-13
 
 - Aggiunti stili e varianti UI per button, card, form, navbar, badge, alert, dropdown, modal, table, pagination, progress, accordion, tabs e toast.
 - Aggiornati esempi e documentazione dei componenti.
-
-# Changelog
 
 ## [0.2.0] - 2026-11-13
 

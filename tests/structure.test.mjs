@@ -37,10 +37,29 @@ const required = [
   'css/components/toast.css',
   'examples/foundation.html',
   'examples/components.html',
+  'css/advanced/themes.css',
+  'css/advanced/animations.css',
+  'css/advanced/responsive.css',
+  'css/advanced/accessibility.css',
+  'js/core/registry.js',
+  'js/animations/reveal.js',
+  'js/animations/counter.js',
+  'js/components/modal.js',
+  'js/components/tabs.js',
+  'js/components/toast.js',
+  'js/mint.js',
+  'examples/javascript.html',
+  'test-css.html',
+  'scripts/build.mjs',
+  'scripts/serve.mjs',
+  'dist/mint.css',
+  'dist/mint.min.css',
+  'dist/mint.js',
+  'dist/mint.min.js',
   'README.md',
   'CHANGELOG.md'
 ];
 
-test('Foundation and Utilities milestone files exist', async () => {
+test('Project milestone files exist', async () => {
   for (const file of required) await assert.doesNotReject(access(new URL(`../${file}`, import.meta.url)), `missing ${file}`);
 });

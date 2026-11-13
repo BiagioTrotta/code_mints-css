@@ -4,13 +4,13 @@ Framework CSS nativo, modulare e leggero. **Less configuration. More creation.**
 
 ## Installazione e utilizzo
 
-Collega il foglio principale direttamente nella pagina. La versione modulare carica i moduli CSS tramite `@import`; la build compatta per distribuzione sarà preparata nella MILESTONE 5.
+Per la distribuzione collega il foglio compatto. La build produce anche un CSS completo non minificato e due bundle JavaScript opzionali.
 
 ```html
-<link rel="stylesheet" href="css/mint.css">
+<link rel="stylesheet" href="dist/mint.min.css">
 ```
 
-Apri [examples/foundation.html](examples/foundation.html) per vedere la Foundation in uso. Il package si chiama `code_mints-css` ed è alla versione `0.2.0`; non è pubblicato su npm.
+In sviluppo puoi collegare `css/mint.css`, che importa i moduli sorgente. Apri [test-css.html](test-css.html) nella root per provare localmente il bundle e i componenti; gli esempi separati sono in `examples/`. Il package si chiama `code_mints-css` ed è alla versione `0.4.0`; non è pubblicato su npm.
 
 ## Foundation (0.1.0)
 
@@ -62,7 +62,7 @@ Le utility sono globali e non hanno varianti responsive automatiche. Usa le colo
 - **Display:** `.d-none`, `.d-inline`, `.d-inline-block`, `.d-block`, `.d-grid`, `.d-flex`, `.d-inline-flex`.
 - **Flexbox:** `.flex-row`, `.flex-column`, `.flex-row-reverse`, `.flex-column-reverse`, `.flex-wrap`, `.flex-nowrap`, `.flex-wrap-reverse`, `.flex-fill`, `.flex-grow-0`, `.flex-grow-1`, `.flex-shrink-0`, `.flex-shrink-1`.
 - **Allineamento e spazi:** `.justify-content-start|end|center|between|around|evenly`; `.align-items-start|end|center|baseline|stretch`; `.align-content-start|end|center|between|around|stretch`; `.align-self-auto|start|end|center|baseline|stretch`; `.gap-0` … `.gap-5`, `.row-gap-0` … `.row-gap-5`, `.column-gap-0` … `.column-gap-5`.
-- **Colori:** testi `.text-body`, `.text-muted`, `.text-success`, `.text-warning`, `.text-danger`, `.text-info`, `.text-navy`, `.text-slate`, `.text-mint`, `.text-ivory`, `.text-coral`; sfondi `.bg-body`, `.bg-surface`, `.bg-primary`, `.bg-secondary`, `.bg-navy`, `.bg-slate`, `.bg-mint`, `.bg-ivory`, `.bg-coral`. Il testo Mint diretto è decorativo e non ha contrasto AA su Ivory.
+- **Colori:** testi `.text-body`, `.text-muted`, `.text-success`, `.text-warning`, `.text-danger`, `.text-info`, `.text-navy`, `.text-slate`, `.text-mint`, `.text-ivory`, `.text-coral`; sfondi `.bg-body`, `.bg-surface`, `.bg-primary`, `.bg-secondary`, `.bg-success`, `.bg-warning`, `.bg-danger`, `.bg-info`, `.bg-navy`, `.bg-slate`, `.bg-mint`, `.bg-ivory`, `.bg-coral`. Il testo Mint diretto è decorativo e non ha contrasto AA su Ivory.
 - **Dimensioni:** `.w-25`, `.w-50`, `.w-75`, `.w-100`, `.w-auto`, `.h-25`, `.h-50`, `.h-75`, `.h-100`, `.h-auto`, `.mw-100`, `.mh-100`, `.min-vw-100`, `.min-vh-100`, `.vw-100`, `.vh-100`.
 - **Bordi e ombre:** `.border`, `.border-0`, `.border-top`, `.border-end`, `.border-bottom`, `.border-start`; `.border-primary|secondary|success|warning|danger|info`; `.rounded-0`, `.rounded-sm`, `.rounded`, `.rounded-lg`, `.rounded-xl`, `.rounded-pill`, `.rounded-circle`; `.shadow-none`, `.shadow-sm`, `.shadow`.
 - **Testo:** `.text-start`, `.text-center`, `.text-end`, `.text-lowercase`, `.text-uppercase`, `.text-capitalize`, `.text-wrap`, `.text-nowrap`, `.text-break`, `.text-decoration-none`, `.text-decoration-underline`, `.fw-normal`, `.fw-medium`, `.fw-semibold`, `.fw-bold`, `.fw-extrabold`, `.font-monospace`, `.font-sans`, `.lh-1`, `.lh-sm`, `.lh-base`, `.lh-lg`, `.fs-1` … `.fs-6`, `.fs-small`.
@@ -97,13 +97,44 @@ I componenti sono classi CSS senza dipendenze. Varianti semantiche usano token L
 
 Esempi completi: [examples/components.html](examples/components.html). Questa milestone fornisce gli stili: i pulsanti di chiusura di alert e toast e i tab non modificano da soli il DOM. La chiusura toast/alert e la gestione tastiera dei tab arriveranno con il JavaScript Engine. Tutti i controlli devono mantenere un nome accessibile; il framework non aggiunge automaticamente label o ruoli ARIA.
 
+## Advanced e JavaScript (0.4.0)
+
+Le utility responsive disponibili sono `.d-{sm|md|lg|xl|xxl}-{none|inline|inline-block|block|grid|flex|inline-flex}`; i breakpoint valgono 576, 768, 992, 1200 e 1400px. Le animazioni sono `.animate-fade`, `.animate-fade-up`, `.animate-fade-down`, `.animate-slide-up`, `.animate-slide-down`, `.animate-zoom`, `.animate-pulse`, `.animate-spin`, `.animate-bounce`. Durate: `.animate-duration-100|200|300|500|700|1000`; ritardi: `.animate-delay-100|200|300|500|700`. `.theme-transition` abilita una transizione cromatica opt-in. Ogni animazione CSS rispetta `prefers-reduced-motion`.
+
+Accessibilità: `.skip-link` diventa visibile al focus e porta al contenuto; `.focus-ring` esplicita il focus ring; `.visually-hidden` e `.visually-hidden-focusable` sono documentati nelle utilities. In modalità contrasto elevato i contorni e i bordi diventano più marcati.
+
+### JavaScript Engine
+
+Il motore non richiede dipendenze e non si avvia da solo. Dopo aver caricato `dist/mint.min.js`, inizializzalo esplicitamente:
+
+```html
+<script src="dist/mint.min.js" defer></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", () => Mint.init());
+</script>
+```
+
+`Mint.init(root)` inizializza i componenti nel documento o nell'elemento passato. `Mint.initComponent(name, root)` inizializza soltanto `modal`, `tabs`, `toast`, `reveal` o `counter`; ritorna `false` se il nome non è registrato. Entrambe le chiamate possono essere ripetute: gli elementi già inizializzati non ricevono listener duplicati. `Mint.components()` restituisce i nomi attivi.
+
+- **Reveal:** aggiungi `data-mint-reveal`; `IntersectionObserver` rivela l'elemento una volta entrato in viewport. Se l'API manca, il contenuto rimane visibile.
+- **Counter:** `data-mint-count="128"` anima da zero. Opzionali `data-mint-start`, `data-mint-duration` (millisecondi, predefinito 1200), `data-mint-decimals`, `data-mint-prefix`, `data-mint-suffix`. Il valore finale è immediato con reduced motion o senza `IntersectionObserver`.
+- **Modal:** usa `<dialog class="modal" id="...">`; trigger con `data-mint-toggle="modal" data-mint-target="#id"`, chiusura con `data-mint-dismiss="modal"`. Il browser gestisce focus, Escape e top layer tramite `showModal()`.
+- **Tabs:** inizializza markup con `.tabs`, `role="tablist"`, tab con `role="tab"`, `aria-controls` e pannelli `role="tabpanel"`. Click, frecce, Home ed End aggiornano selezione e focus.
+- **Toast:** `Mint.toast({ title, message, type })` crea in sicurezza un toast (i valori sono inseriti tramite `textContent`); `type` accetta `success`, `warning`, `danger`, `info`. Puoi anche passare una stringa come messaggio. Il pulsante close rimuove il toast.
+
+Dropdown (`details`) e accordion (`details`) usano controlli nativi; non richiedono JavaScript. Vedi [examples/javascript.html](examples/javascript.html) per l'integrazione.
+
 ## Accessibilità
 
 Il reset conserva le funzionalità native; immagini e media sono responsive e i controlli ereditano il font. `:focus-visible` applica un contorno evidente. Verifica sempre le label associate ai controlli nel markup applicativo. I colori semantici usati come testo e lo stato focus hanno contrasto AA sul tema Light; Mint diretto è riservato agli accenti.
 
 ## Sviluppo e verifica
 
-Richiede Node.js 18 o superiore e non installa pacchetti. Esegui `npm test` per verificare token, breakpoints, griglia, temi, spacing e utility; `npm run check:structure` per controllare i file richiesti.
+Richiede Node.js 18 o superiore e non installa pacchetti. `npm run build` rigenera `dist/mint.css`, `dist/mint.min.css`, `dist/mint.js` e `dist/mint.min.js`; `npm test` rigenera i bundle e verifica test Foundation, utility, componenti e JavaScript. `npm run check:structure` verifica i file richiesti; `npm run serve` avvia un server locale per gli esempi.
+
+## Compatibilità browser
+
+Il framework usa CSS Grid, Flexbox, custom properties, `color-mix()`, `:has()`, `<dialog>`, `<details>` e `IntersectionObserver`. È destinato a versioni moderne dei browser evergreen. I test automatici controllano struttura, API, sintassi e bundle, ma non simulano il rendering; Chrome, Firefox, Edge e Safari non sono stati verificati in una matrice browser in questa fase. Le versioni minime supportate restano da definire.
 
 ## Versionamento e roadmap
 
@@ -112,5 +143,6 @@ Si usa Semantic Versioning. Nessuna pubblicazione npm è stata eseguita.
 - [x] 0.1.0 Foundation, temi, griglia e spacing essenziale
 - [x] 0.2.0 Utilities
 - [x] 0.3.0 UI Components
-- [ ] 0.4.0 Advanced e JavaScript
-- [ ] 1.0.0 Release stabile, build e documentazione finale
+- [x] 0.4.0 Advanced e JavaScript
+- [x] Build riproducibile e bundle distribuiti
+- [ ] 1.0.0 Release stabile

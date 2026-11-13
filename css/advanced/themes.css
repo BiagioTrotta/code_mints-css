@@ -1,0 +1,3 @@
+/* Opt-in transitions for applications that switch data-theme at runtime. */
+.theme-transition, .theme-transition * { transition-property: background-color, color, border-color; transition-duration: .2s; }
+@media (prefers-reduced-motion: reduce) { .theme-transition, .theme-transition * { transition-duration: .01ms !important; } }

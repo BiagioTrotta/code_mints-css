@@ -29,6 +29,4 @@
 .btn-loading { cursor: progress; }
 .btn-loading::after { width: .9em; height: .9em; border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; content: ""; animation: mint-spin .7s linear infinite; }
 @keyframes mint-spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-loading::after { animation-duration: 1.8s; } }
-
-
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn-loading::after { animation: none; } }

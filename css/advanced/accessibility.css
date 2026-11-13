@@ -1,0 +1,7 @@
+.skip-link { position: fixed; z-index: 2000; inset-block-start: 1rem; inset-inline-start: 1rem; padding: .75rem 1rem; transform: translateY(-200%); border-radius: var(--mint-radius-sm); background: var(--mint-secondary); color: var(--mint-ivory); }
+.skip-link:focus { transform: translateY(0); }
+.focus-ring:focus-visible { outline: 3px solid var(--mint-focus); outline-offset: 3px; }
+@media (prefers-contrast: more) {
+  :where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible { outline-width: 4px; outline-offset: 3px; }
+  .form-control, .form-select, .btn, .card, .alert { border-width: 2px; }
+}

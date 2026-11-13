@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>code_mints-css · JavaScript Engine</title>
+  <link rel="stylesheet" href="../css/mint.css">
+  <script defer src="../js/core/registry.js"></script>
+  <script defer src="../js/animations/reveal.js"></script>
+  <script defer src="../js/animations/counter.js"></script>
+  <script defer src="../js/components/modal.js"></script>
+  <script defer src="../js/components/tabs.js"></script>
+  <script defer src="../js/components/toast.js"></script>
+  <script defer src="../js/mint.js"></script>
+</head>
+<body>
+  <main class="container py-5">
+    <a class="skip-link" href="#main">Salta al contenuto</a>
+    <div id="main">
+      <p class="small">code_mints-css · Advanced 0.4.0</p>
+      <h1 class="mt-2">Motion con rispetto</h1>
+      <p class="my-3">I contatori e i reveal partono quando entrano nell'area visibile. Con reduced motion i valori sono mostrati subito.</p>
+      <div class="row">
+        <section class="col-12 col-md-6 card card-body" data-mint-reveal>
+          <h2 class="h4">Progetti completati</h2><p class="h1 text-success" data-mint-count="128" data-mint-duration="900">0</p>
+        </section>
+        <section class="col-12 col-md-6 card card-body" data-mint-reveal>
+          <h2 class="h4">Soddisfazione</h2><p class="h1 text-info" data-mint-count="98" data-mint-suffix="%">0</p>
+        </section>
+      </div>
+      <div class="d-flex flex-wrap gap-2 mt-4">
+        <button class="btn" data-mint-toggle="modal" data-mint-target="#demo-modal">Apri modal</button>
+        <button class="btn btn-secondary" id="show-toast">Mostra toast</button>
+      </div>
+      <section class="tabs mt-4" aria-label="Dettagli">
+        <div class="tabs-list" role="tablist" aria-label="Sezioni">
+          <button class="tab" id="tab-a" role="tab" aria-selected="true" aria-controls="panel-a">Uno</button>
+          <button class="tab" id="tab-b" role="tab" aria-selected="false" aria-controls="panel-b">Due</button>
+        </div>
+        <div class="tab-panel" id="panel-a" role="tabpanel" aria-labelledby="tab-a">Pannello uno.</div>
+        <div class="tab-panel" id="panel-b" role="tabpanel" aria-labelledby="tab-b" hidden>Pannello due.</div>
+      </section>
+      <dialog class="modal" id="demo-modal" aria-labelledby="modal-title">
+        <header class="modal-header"><h2 class="modal-title" id="modal-title">Dialog nativo</h2><button class="btn btn-ghost btn-sm" data-mint-dismiss="modal" aria-label="Chiudi">×</button></header>
+        <div class="modal-body">Il browser gestisce focus, Escape e top layer con <code>showModal()</code>.</div>
+        <footer class="modal-footer"><button class="btn" data-mint-dismiss="modal">Chiudi</button></footer>
+      </dialog>
+    </div>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      Mint.init();
+      document.getElementById("show-toast").addEventListener("click", function () {
+        Mint.toast({ title: "Tutto a posto", message: "Il JavaScript Engine è inizializzato.", type: "success" });
+      });
+    });
+  </script>
+</body>
+</html>

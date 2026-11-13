@@ -29,3 +29,7 @@
 @import url("./components/accordion.css");
 @import url("./components/tabs.css");
 @import url("./components/toast.css");
+@import url("./advanced/themes.css");
+@import url("./advanced/animations.css");
+@import url("./advanced/responsive.css");
+@import url("./advanced/accessibility.css");

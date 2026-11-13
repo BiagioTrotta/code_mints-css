@@ -1,0 +1,243 @@
+/*! code_mints-css v0.4.0 | MIT */
+(function (global) {
+  "use strict";
+  const Mint = global.Mint || {};
+  global.Mint = Mint;
+  const components = new Map();
+  Mint.register = function (name, initializer) {
+    if (!name || typeof initializer !== "function") throw new TypeError("Mint component requires a name and initializer.");
+    components.set(name, initializer);
+  };
+  Mint.elements = function (selector, root) {
+    const scope = root || global.document;
+    const found = Array.from(scope.querySelectorAll(selector));
+    if (scope.nodeType === 1 && scope.matches(selector)) found.unshift(scope);
+    return found;
+  };
+  Mint.initComponent = function (name, root) {
+    const initialize = components.get(name);
+    if (!initialize) return false;
+    initialize(root || global.document);
+    return true;
+  };
+  Mint._components = components;
+})(window);
+
+(function (global) {
+  "use strict";
+  const Mint = global.Mint;
+  const seen = new WeakSet();
+  Mint.register("reveal", function (root) {
+    const elements = Mint.elements("[data-mint-reveal]", root).filter(function (element) { return !seen.has(element); });
+    if (!elements.length) return;
+    const reduce = global.matchMedia && global.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in global)) {
+      elements.forEach(function (element) { seen.add(element); element.classList.add("is-visible"); });
+      return;
+    }
+    const observer = new global.IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: .12, rootMargin: "0px 0px -40px 0px" });
+    elements.forEach(function (element) {
+      seen.add(element);
+      element.classList.add("mint-reveal-pending");
+      observer.observe(element);
+    });
+  });
+})(window);
+
+(function (global) {
+  "use strict";
+  const Mint = global.Mint;
+  const seen = new WeakSet();
+  function valueOf(element, key, fallback) {
+    const value = Number(element.getAttribute(key));
+    return Number.isFinite(value) ? value : fallback;
+  }
+  function format(element, value, digits) {
+    const locale = global.document.documentElement.lang || "it";
+    const number = new Intl.NumberFormat(locale, { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(value);
+    element.textContent = (element.getAttribute("data-mint-prefix") || "") + number + (element.getAttribute("data-mint-suffix") || "");
+  }
+  function run(element) {
+    const target = valueOf(element, "data-mint-count", 0);
+    const start = valueOf(element, "data-mint-start", 0);
+    const digits = Math.max(0, Math.min(6, valueOf(element, "data-mint-decimals", 0)));
+    const duration = Math.max(0, valueOf(element, "data-mint-duration", 1200));
+    if (duration === 0) { format(element, target, digits); return; }
+    const began = global.performance.now();
+    function frame(now) {
+      const progress = Math.min(1, (now - began) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      format(element, start + (target - start) * eased, digits);
+      if (progress < 1) global.requestAnimationFrame(frame);
+    }
+    global.requestAnimationFrame(frame);
+  }
+  Mint.register("counter", function (root) {
+    const elements = Mint.elements("[data-mint-count]", root).filter(function (element) { return !seen.has(element); });
+    if (!elements.length) return;
+    const reduce = global.matchMedia && global.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in global)) {
+      elements.forEach(function (element) { seen.add(element); format(element, valueOf(element, "data-mint-count", 0), Math.max(0, Math.min(6, valueOf(element, "data-mint-decimals", 0)))); });
+      return;
+    }
+    const observer = new global.IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        run(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: .25 });
+    elements.forEach(function (element) { seen.add(element); observer.observe(element); });
+  });
+})(window);
+
+(function (global) {
+  "use strict";
+  const Mint = global.Mint;
+  const seen = new WeakSet();
+  Mint.register("modal", function (root) {
+    Mint.elements('[data-mint-toggle="modal"]', root).forEach(function (trigger) {
+      if (seen.has(trigger)) return;
+      seen.add(trigger);
+      trigger.addEventListener("click", function () {
+        const selector = trigger.getAttribute("data-mint-target");
+        if (!selector) return;
+        let dialog;
+        try { dialog = global.document.querySelector(selector); } catch (_) { return; }
+        if (!dialog || !dialog.matches("dialog")) return;
+        if (typeof dialog.showModal === "function") dialog.showModal();
+        else dialog.setAttribute("open", "");
+      });
+    });
+    Mint.elements('[data-mint-dismiss="modal"]', root).forEach(function (trigger) {
+      if (seen.has(trigger)) return;
+      seen.add(trigger);
+      trigger.addEventListener("click", function () {
+        const dialog = trigger.closest("dialog");
+        if (dialog && typeof dialog.close === "function") dialog.close();
+        else if (dialog) dialog.removeAttribute("open");
+      });
+    });
+    Mint.elements("dialog.modal", root).forEach(function (dialog) {
+      if (seen.has(dialog)) return;
+      seen.add(dialog);
+      dialog.addEventListener("click", function (event) {
+        if (event.target === dialog && typeof dialog.close === "function") dialog.close();
+      });
+    });
+  });
+})(window);
+
+(function (global) {
+  "use strict";
+  const Mint = global.Mint;
+  const seen = new WeakSet();
+  function activate(tab, tabs, focus) {
+    tabs.querySelectorAll('[role="tab"]').forEach(function (item) {
+      const selected = item === tab;
+      item.setAttribute("aria-selected", String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      const id = item.getAttribute("aria-controls");
+      const panel = id && global.CSS && global.CSS.escape ? tabs.querySelector("#" + global.CSS.escape(id)) : null;
+      if (panel) panel.hidden = !selected;
+    });
+    if (focus) tab.focus();
+  }
+  Mint.register("tabs", function (root) {
+    Mint.elements(".tabs", root).forEach(function (tabs) {
+      if (seen.has(tabs)) return;
+      const buttons = Array.from(tabs.querySelectorAll('[role="tab"]'));
+      if (!buttons.length) return;
+      seen.add(tabs);
+      activate(buttons.find(function (tab) { return tab.getAttribute("aria-selected") === "true"; }) || buttons[0], tabs, false);
+      tabs.addEventListener("click", function (event) {
+        const tab = event.target.closest('[role="tab"]');
+        if (tab && tabs.contains(tab)) activate(tab, tabs, false);
+      });
+      tabs.addEventListener("keydown", function (event) {
+        const current = event.target.closest('[role="tab"]');
+        if (!current) return;
+        const vertical = tabs.querySelector('[role="tablist"]')?.getAttribute("aria-orientation") === "vertical";
+        const previous = vertical ? "ArrowUp" : "ArrowLeft";
+        const next = vertical ? "ArrowDown" : "ArrowRight";
+        let index = buttons.indexOf(current);
+        if (event.key === previous) index = (index - 1 + buttons.length) % buttons.length;
+        else if (event.key === next) index = (index + 1) % buttons.length;
+        else if (event.key === "Home") index = 0;
+        else if (event.key === "End") index = buttons.length - 1;
+        else return;
+        event.preventDefault();
+        activate(buttons[index], tabs, true);
+      });
+    });
+  });
+})(window);
+
+(function (global) {
+  "use strict";
+  const Mint = global.Mint;
+  const seen = new WeakSet();
+  Mint.register("toast", function (root) {
+    Mint.elements(".toast-close", root).forEach(function (button) {
+      if (seen.has(button)) return;
+      seen.add(button);
+      button.addEventListener("click", function () {
+        const toast = button.closest(".toast");
+        if (toast) toast.remove();
+      });
+    });
+  });
+  Mint.toast = function (options) {
+    const config = typeof options === "string" ? { message: options } : (options || {});
+    const allowed = ["success", "warning", "danger", "info"];
+    const type = allowed.includes(config.type) ? config.type : "info";
+    let container = global.document.querySelector(config.container || ".toast-container");
+    if (!container) {
+      container = global.document.createElement("div");
+      container.className = "toast-container";
+      container.setAttribute("aria-live", "polite");
+      container.setAttribute("aria-atomic", "false");
+      global.document.body.appendChild(container);
+    }
+    const toast = global.document.createElement("div");
+    toast.className = "toast toast-" + type;
+    toast.setAttribute("role", "status");
+    const content = global.document.createElement("div");
+    content.className = "toast-content";
+    if (config.title) {
+      const title = global.document.createElement("h2");
+      title.className = "toast-title";
+      title.textContent = String(config.title);
+      content.appendChild(title);
+    }
+    const message = global.document.createElement("div");
+    message.className = "toast-message";
+    message.textContent = String(config.message || "");
+    content.appendChild(message);
+    const close = global.document.createElement("button");
+    close.className = "toast-close";
+    close.type = "button";
+    close.setAttribute("aria-label", "Chiudi notifica");
+    close.textContent = "×";
+    toast.append(content, close);
+    container.appendChild(toast);
+    Mint.initComponent("toast", toast);
+    return toast;
+  };
+})(window);
+
+(function (global) {
+  "use strict";
+  global.Mint.version = "0.4.0";
+  global.Mint.components = function () { return Array.from(global.Mint._components.keys()); };
+  global.Mint.init = function (root) {
+    global.Mint._components.forEach(function (initialize) { initialize(root || global.document); });
+    return global.Mint;
+  };
+})(window);
