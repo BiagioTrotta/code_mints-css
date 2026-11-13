@@ -7,3 +7,11 @@
 @import url("./foundation/spacing-tokens.css");
 @import url("./foundation/base.css");
 @import url("./utilities/spacing.css");
+@import url("./utilities/display.css");
+@import url("./utilities/flex.css");
+@import url("./utilities/colors.css");
+@import url("./utilities/sizing.css");
+@import url("./utilities/borders.css");
+@import url("./utilities/text.css");
+@import url("./utilities/position.css");
+@import url("./utilities/visibility.css");

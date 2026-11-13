@@ -1,0 +1,20 @@
+.text-body { color: var(--mint-text) !important; }
+.text-muted { color: var(--mint-text-muted) !important; }
+.text-success { color: var(--mint-success) !important; }
+.text-warning { color: var(--mint-warning) !important; }
+.text-danger { color: var(--mint-danger) !important; }
+.text-info { color: var(--mint-info) !important; }
+.text-navy { color: var(--mint-navy) !important; }
+.text-slate { color: var(--mint-slate) !important; }
+.text-mint { color: var(--mint-green) !important; }
+.text-ivory { color: var(--mint-ivory) !important; }
+.text-coral { color: var(--mint-coral) !important; }
+.bg-body { color: var(--mint-text) !important; background-color: var(--mint-bg) !important; }
+.bg-surface { color: var(--mint-text) !important; background-color: var(--mint-surface) !important; }
+.bg-primary { color: var(--mint-navy) !important; background-color: var(--mint-primary) !important; }
+.bg-secondary { color: var(--mint-ivory) !important; background-color: var(--mint-secondary) !important; }
+.bg-navy { color: var(--mint-ivory) !important; background-color: var(--mint-navy) !important; }
+.bg-slate { color: var(--mint-ivory) !important; background-color: var(--mint-slate) !important; }
+.bg-mint { color: var(--mint-navy) !important; background-color: var(--mint-green) !important; }
+.bg-ivory { color: var(--mint-navy) !important; background-color: var(--mint-ivory) !important; }
+.bg-coral { color: var(--mint-navy) !important; background-color: var(--mint-coral) !important; }

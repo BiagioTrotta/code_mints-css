@@ -41,3 +41,22 @@ test('spacing scale has the requested values and essential direction utilities',
   for (const cls of ['.m-1', '.mt-2', '.mb-3', '.ms-4', '.me-5', '.mx-auto', '.p-1', '.px-2', '.py-3']) assert.ok(utilities.includes(cls));
 });
 
+
+test('utilities provide core display, flex, color, sizing, border, text and visibility classes', async () => {
+  const cases = [
+    ['display.css', ['.d-none', '.d-grid', '.d-flex']],
+    ['flex.css', ['.flex-row', '.justify-content-between', '.align-items-center', '.gap-5']],
+    ['colors.css', ['.text-body', '.text-success', '.bg-surface', '.bg-primary']],
+    ['sizing.css', ['.w-100', '.h-auto', '.min-vh-100']],
+    ['borders.css', ['.border', '.rounded-xl', '.shadow-sm']],
+    ['text.css', ['.text-center', '.fw-semibold', '.font-monospace', '.fs-1']],
+    ['position.css', ['.position-sticky', '.start-0', '.z-3']],
+    ['visibility.css', ['.visually-hidden', '.invisible']]
+  ];
+  for (const [file, selectors] of cases) {
+    const source = await css(`../css/utilities/${file}`);
+    for (const selector of selectors) assert.ok(source.includes(selector), `${file} missing ${selector}`);
+  }
+  const entry = await css('../css/mint.css');
+  for (const [file] of cases) assert.ok(entry.includes(`./utilities/${file}`), `mint.css does not load ${file}`);
+});

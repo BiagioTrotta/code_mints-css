@@ -1,0 +1,22 @@
+.border { border: 1px solid var(--mint-border) !important; }
+.border-0 { border: 0 !important; }
+.border-top { border-top: 1px solid var(--mint-border) !important; }
+.border-end { border-inline-end: 1px solid var(--mint-border) !important; }
+.border-bottom { border-bottom: 1px solid var(--mint-border) !important; }
+.border-start { border-inline-start: 1px solid var(--mint-border) !important; }
+.border-primary { border-color: var(--mint-green) !important; }
+.border-secondary { border-color: var(--mint-slate) !important; }
+.border-success { border-color: var(--mint-success) !important; }
+.border-warning { border-color: var(--mint-warning) !important; }
+.border-danger { border-color: var(--mint-danger) !important; }
+.border-info { border-color: var(--mint-info) !important; }
+.rounded-0 { border-radius: 0 !important; }
+.rounded-sm { border-radius: var(--mint-radius-sm) !important; }
+.rounded { border-radius: var(--mint-radius-md) !important; }
+.rounded-lg { border-radius: var(--mint-radius-lg) !important; }
+.rounded-xl { border-radius: var(--mint-radius-xl) !important; }
+.rounded-pill { border-radius: 50rem !important; }
+.rounded-circle { border-radius: 50% !important; }
+.shadow-none { box-shadow: none !important; }
+.shadow-sm { box-shadow: var(--mint-shadow-sm) !important; }
+.shadow { box-shadow: var(--mint-shadow-md) !important; }

@@ -1,6 +1,6 @@
 {
   "name": "code_mints-css",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Framework CSS modulare, leggero e senza dipendenze runtime.",
   "license": "MIT",
   "type": "module",
